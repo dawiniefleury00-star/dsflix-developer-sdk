@@ -3,8 +3,8 @@ Name: dsflix-sdk-python
 Version: 0.1.0
 Summary: Python client SDK for the DSFlix streaming API
 Author: DSFlix Team
-Project-URL: Homepage, https://github.com/dsflix/dsflix-sdk
-Project-URL: Repository, https://github.com/dsflix/dsflix-sdk
+Project-URL: Homepage, https://github.com/dawiniefleury00-star/dsflix-developer-sdk
+Project-URL: Repository, https://github.com/dawiniefleury00-star/dsflix-developer-sdk
 Keywords: dsflix,dsflix-sdk,dsf-sdk,movies,streaming,api
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
