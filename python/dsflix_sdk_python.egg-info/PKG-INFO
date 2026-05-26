@@ -1,0 +1,51 @@
+Metadata-Version: 2.4
+Name: dsflix-sdk-python
+Version: 0.1.0
+Summary: Python client SDK for the DSFlix streaming API
+Author: DSFlix Team
+Project-URL: Homepage, https://github.com/dsflix/dsflix-sdk
+Project-URL: Repository, https://github.com/dsflix/dsflix-sdk
+Keywords: dsflix,dsflix-sdk,dsf-sdk,movies,streaming,api
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.31.0
+
+# DSFlix SDK for Python
+
+A Python client for the DSFlix streaming API, modeled after the existing TypeScript SDK.
+
+## Install
+
+```bash
+pip install -e .
+```
+
+## Quick start
+
+```python
+from dsflix_sdk import DsfClient
+
+client = DsfClient(api_key="dfx-your-api-key")
+movies = client.movies.get_popular()
+print(movies.get("results", []))
+
+search = client.search.multi("Inception")
+print(search.get("results", []))
+
+reply = client.ai.chat("Recommend a good thriller movie")
+print(reply.get("reply"))
+```
+
+## Package structure
+
+- `dsflix_sdk.client`: main client class
+- `dsflix_sdk.http`: network layer using `requests`
+- `dsflix_sdk.exceptions`: SDK exception types
+- `dsflix_sdk.modules`: endpoint modules for movies, tv, search, ai, user, coins, membership, music, news, home
+
+## Example
+
+See `examples/basic.py` for a runnable sample.

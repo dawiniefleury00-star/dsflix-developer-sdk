@@ -1,0 +1,19 @@
+{
+  "name": "dsflix/dsflix-sdk-php",
+  "description": "PHP client SDK for the DSFlix streaming API",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "DSFlix Team"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "DsflixSdk\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.4"
+  }
+}

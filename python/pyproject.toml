@@ -1,0 +1,26 @@
+[project]
+name = "dsflix-sdk-python"
+version = "0.1.0"
+description = "Python client SDK for the DSFlix streaming API"
+authors = [
+  { name = "DSFlix Team" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "requests>=2.31.0"
+]
+keywords = ["dsflix", "dsflix-sdk", "dsf-sdk", "movies", "streaming", "api"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+
+[project.urls]
+Homepage = "https://github.com/dsflix/dsflix-sdk"
+Repository = "https://github.com/dsflix/dsflix-sdk"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
