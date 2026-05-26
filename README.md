@@ -1,4 +1,4 @@
-# DSFlix SDK (`dsflix-sdk`)
+# DSFlix SDK (`dsflix-sdk-npm` )
 
 > **Official JavaScript/TypeScript SDK for the DSFlix Streaming API — 2026**
 
