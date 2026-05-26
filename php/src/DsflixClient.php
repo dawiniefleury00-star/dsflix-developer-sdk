@@ -17,6 +17,18 @@ class DsflixClient
 
     private function request(string $method, string $path, array $params = [], array $body = []): array
     {
+        // Offline mock mode for local testing
+        if (getenv('DSFLIX_MOCK') === '1') {
+            if (strpos($path, '/api/v2/movies/popular') === 0) {
+                return ['page' => 1, 'results' => [['id' => 1, 'title' => 'Mock Movie', 'overview' => 'A mock movie.']], 'total_pages' => 1, 'total_results' => 1];
+            }
+            if (strpos($path, '/api/v2/search/movie') === 0) {
+                return ['page' => 1, 'results' => [['id' => 42, 'media_type' => 'movie', 'title' => 'Mock Search', 'overview' => 'Mocked search result.']], 'total_pages' => 1, 'total_results' => 1];
+            }
+            if (strpos($path, '/api/v2/ai/chat') === 0) {
+                return ['id' => 'mock-1', 'reply' => 'This is a mocked AI reply.'];
+            }
+        }
         $url = $this->baseUrl . $path;
         if (!empty($params)) {
             $url .= '?' . http_build_query(array_filter($params, fn($value) => $value !== null));

@@ -32,6 +32,20 @@ export class HttpClient {
 
   async get<T>(path: string, params?: Record<string, string | number | boolean | undefined>): Promise<T> {
     const url = this.buildUrl(path, params);
+    // Offline mock mode for local testing: set DSFLIX_MOCK=1 in environment
+    const proc = (globalThis as any).process;
+    const mockFlag = ((proc && proc.env && proc.env.DSFLIX_MOCK === '1') || ((globalThis as any).DSFLIX_MOCK === '1'));
+    if (mockFlag) {
+      if (path.startsWith('/api/v2/movies/popular')) {
+        return { page: 1, results: [{ id: 1, title: 'Mock Movie', overview: 'A mock movie.' }], total_pages: 1, total_results: 1 } as unknown as T;
+      }
+      if (path.startsWith('/api/v2/search/multi') || path.startsWith('/api/v2/search/movie')) {
+        return { page: 1, results: [{ id: 42, media_type: 'movie', title: 'Mock Search', overview: 'Mocked search result.' }], total_pages: 1, total_results: 1 } as unknown as T;
+      }
+      if (path.startsWith('/api/v2/ai/chat')) {
+        return { id: 'mock-1', reply: 'This is a mocked AI reply.', usage: { prompt_tokens: 3 } } as unknown as T;
+      }
+    }
     return this.request<T>(url, { method: 'GET' });
   }
 

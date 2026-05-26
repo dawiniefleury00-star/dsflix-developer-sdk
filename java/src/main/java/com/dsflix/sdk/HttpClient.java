@@ -2,7 +2,6 @@ package com.dsflix.sdk;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
@@ -16,10 +15,22 @@ public class HttpClient {
         this.apiKey = apiKey;
         this.baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
         this.timeoutSeconds = timeoutSeconds;
-        this.client = HttpClient.newBuilder().build();
+        this.client = java.net.http.HttpClient.newBuilder().build();
     }
 
     public String get(String path, String query) throws IOException, InterruptedException {
+        // Offline mock mode: set DSFLIX_MOCK=1 to return canned responses
+        if ("1".equals(System.getenv("DSFLIX_MOCK"))) {
+            if (path.startsWith("/api/v2/movies/popular")) {
+                return "{\"page\":1,\"results\":[{\"id\":1,\"title\":\"Mock Movie\",\"overview\":\"A mock movie.\"}],\"total_pages\":1,\"total_results\":1}";
+            }
+            if (path.startsWith("/api/v2/search/multi") || path.startsWith("/api/v2/search/movie")) {
+                return "{\"page\":1,\"results\":[{\"id\":42,\"media_type\":\"movie\",\"title\":\"Mock Search\",\"overview\":\"Mocked search result.\"}],\"total_pages\":1,\"total_results\":1}";
+            }
+            if (path.startsWith("/api/v2/ai/chat")) {
+                return "{\"id\":\"mock-1\",\"reply\":\"This is a mocked AI reply.\"}";
+            }
+        }
         String url = baseUrl + path + (query.isEmpty() ? "" : "?" + query);
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(url))
@@ -37,6 +48,13 @@ public class HttpClient {
     }
 
     public String post(String path, String jsonBody) throws IOException, InterruptedException {
+        // Offline mock mode for POST requests
+        if ("1".equals(System.getenv("DSFLIX_MOCK"))) {
+            if (path.startsWith("/api/v2/ai/chat")) {
+                return "{\"id\":\"mock-1\",\"reply\":\"This is a mocked AI reply.\"}";
+            }
+        }
+
         String url = baseUrl + path;
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(url))

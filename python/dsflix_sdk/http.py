@@ -1,3 +1,4 @@
+import os
 import requests
 from requests import Response
 
@@ -48,6 +49,16 @@ class HttpClient:
         files: dict | None = None,
     ) -> dict:
         url = f"{self.base_url}{path}"
+
+        # Offline mock mode for local testing: set DSFLIX_MOCK=1 to return canned responses
+        if os.environ.get("DSFLIX_MOCK") == "1":
+            # Provide small mock responses for commonly used endpoints
+            if path.startswith("/api/v2/movies/popular"):
+                return {"page": 1, "results": [{"id": 1, "title": "Mock Movie", "overview": "A mock movie."}], "total_pages": 1, "total_results": 1}
+            if path.startswith("/api/v2/search/multi") or path.startswith("/api/v2/search/movie"):
+                return {"page": 1, "results": [{"id": 42, "media_type": "movie", "title": "Mock Search", "overview": "Mocked search result."}], "total_pages": 1, "total_results": 1}
+            if path.startswith("/api/v2/ai/chat"):
+                return {"id": "mock-1", "reply": "This is a mocked AI reply.", "usage": {"prompt_tokens": 3}}
 
         try:
             response: Response = self.session.request(
