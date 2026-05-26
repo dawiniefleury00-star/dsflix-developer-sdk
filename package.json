@@ -1,6 +1,6 @@
 {
   "name": "dsflix-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DSFlix SDK – Official JavaScript/TypeScript client for the DSFlix streaming API 2026. Access movies, TV shows, AI chat, coins, user profiles, and more.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
