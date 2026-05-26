@@ -1,0 +1,51 @@
+{
+  "name": "dsflix-sdk",
+  "version": "1.0.0",
+  "description": "DSFlix SDK – Official JavaScript/TypeScript client for the DSFlix streaming API 2026. Access movies, TV shows, AI chat, coins, user profiles, and more.",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node dist/examples/basic.js"
+  },
+  "keywords": [
+    "dsflix",
+    "dsflix-sdk",
+    "dsf-sdk",
+    "dsflix api",
+    "dsf sdk api 2026",
+    "movie streaming api",
+    "streaming sdk",
+    "dawensflix",
+    "dawensflix sdk",
+    "movies api",
+    "tv shows api",
+    "ai chat api",
+    "coins api",
+    "npm sdk movies"
+  ],
+  "author": "DSFlix Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsflix/dsflix-sdk.git"
+  },
+  "homepage": "https://github.com/dsflix/dsflix-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/dsflix/dsflix-sdk/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
+}
