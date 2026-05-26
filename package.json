@@ -1,5 +1,5 @@
 {
-  "name": "dsflix-sdk-npm",
+  "name": "@dsflix-sdk-npm/dsflix-sdk",
   "version": "1.0.0",
   "description": "DSFlix SDK NPM – Official JavaScript/TypeScript client for the DSFlix streaming API 2026. Access movies, TV shows, AI chat, coins, user profiles, and more.",
   "main": "dist/index.js",
@@ -35,7 +35,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dawiniefleury00-star/dsflix-developer-sdk.git"
+    "url": "git+https://github.com/dawiniefleury00-star/dsflix-developer-sdk.git"
   },
   "homepage": "https://github.com/dawiniefleury00-star/dsflix-developer-sdk#readme",
   "bugs": {
@@ -47,5 +47,8 @@
   "dependencies": {},
   "devDependencies": {
     "typescript": "^5.5.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
